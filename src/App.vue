@@ -3,11 +3,11 @@
  * @Author: sjq
  * @Date: 2020-04-28 17:13:54
  * @LastEditors: sjq
- * @LastEditTime: 2020-05-23 18:59:37
+ * @LastEditTime: 2020-05-25 14:49:49
  -->
 <template>
   <div id="app">
-    1
+    12333
     <quill-editor
       :content="content"
       :options="editorOption"
@@ -62,7 +62,7 @@ export default {
           toolbar: {
             container: toolbarOptions, // 工具栏
             handlers: {
-              video: function (value) {
+              video: function(value) {
                 if (value) {
                   document.querySelector('#Pic input').click();
                 } else {
