@@ -13,8 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: setup nodejs
-        uses: actions/setup-node@v1
+      # - name: setup nodejs
+      # uses: actions/setup-node@v1
       # 安装依赖
       - run: npm i
 
