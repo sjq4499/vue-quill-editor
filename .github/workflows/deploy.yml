@@ -17,10 +17,9 @@ jobs:
         useu: actions/setup-node@v1
       # 安装依赖
       - run: npm i
-          npm run build
 
       # 打包
-      # - run:
+      - run: npm run build
 
       # 部署
       - name: Deploy
