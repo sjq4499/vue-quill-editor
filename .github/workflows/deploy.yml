@@ -14,17 +14,21 @@ jobs:
         uses: actions/checkout@master
 
       # 安装依赖
-      # - run: npm i
+      - run: npm i
 
       # 打包
-      # - run: npm run build
+      - run: npm run build
 
       # 部署
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@master
-        env:
-          PERSONAL_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
-          PUBLISH_BRANCH: gh-pages
-          # 生成文件的目录
-          PUBLISH_DIR: build
-          BUILD_SCRIPT: npm install && npm run build
+        with:
+          ACCESS_TOKEN: ${{secrets.DEPLOY_KEY1}}
+          BRANCH: gh-pages
+          FOLDER: build
+        # env:
+        #   PERSONAL_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
+        #   PUBLISH_BRANCH: gh-pages
+        #   # 生成文件的目录
+        #   PUBLISH_DIR: build
+        #   BUILD_SCRIPT: npm install && npm run build
