@@ -13,19 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: setup nodejs
+        useu: actions/setup-node@v1
       # 安装依赖
       - run: npm i
+          npm run build
 
       # 打包
-      - run: npm run build
+      # - run:
 
       # 部署
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: sjq4499/github-pages-deploy-action@master
         with:
           ACCESS_TOKEN: ${{secrets.DEPLOY_KEY1}}
-          BRANCH: gh-pages
-          FOLDER: build
+          BRANCH: master
+          FOLDER: dist
         # env:
         #   PERSONAL_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
         #   PUBLISH_BRANCH: gh-pages
