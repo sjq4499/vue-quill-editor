@@ -3,11 +3,11 @@
  * @Author: sjq
  * @Date: 2020-04-28 17:13:54
  * @LastEditors: sjq
- * @LastEditTime: 2020-05-25 14:49:49
+ * @LastEditTime: 2020-05-25 14:56:08
  -->
 <template>
   <div id="app">
-    12333
+    123332
     <quill-editor
       :content="content"
       :options="editorOption"
