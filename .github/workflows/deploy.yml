@@ -5,32 +5,51 @@ on:
     branches:
       - master
 
+# jobs:
+#   build-deploy:
+#     # 运行所需要虚拟机环境
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@master
+
+#       # - name: setup nodejs
+#       # uses: actions/setup-node@v1
+#       # 安装依赖
+#       - run: npm i
+
+#       # 打包
+#       - run: npm run build
+
+#       # 部署
+#       - name: Deploy
+#         uses: JamesIves/github-pages-deploy-action@master
+#         with:
+#           ACCESS_TOKEN: ${{secrets.DEPLOY_KEY1}}
+#           BRANCH: master
+#           FOLDER: dist
+# env:
+#   PERSONAL_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
+#   PUBLISH_BRANCH: gh-pages
+#   # 生成文件的目录
+#   PUBLISH_DIR: build
+#   BUILD_SCRIPT: npm install && npm run build
 jobs:
-  build-deploy:
-    # 运行所需要虚拟机环境
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
-
-      # - name: setup nodejs
-      # uses: actions/setup-node@v1
-      # 安装依赖
-      - run: npm i
-
-      # 打包
-      - run: npm run build
-
-      # 部署
-      - name: Deploy
-        uses: sjq4499/github-pages-deploy-action@master
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
-          ACCESS_TOKEN: ${{secrets.DEPLOY_KEY1}}
-          BRANCH: master
-          FOLDER: dist
-        # env:
-        #   PERSONAL_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
-        #   PUBLISH_BRANCH: gh-pages
-        #   # 生成文件的目录
-        #   PUBLISH_DIR: build
-        #   BUILD_SCRIPT: npm install && npm run build
+          persist-credentials: false
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+
+        with:
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY1 }}
+          BRANCH: gh-pages
+          FOLDER: build
